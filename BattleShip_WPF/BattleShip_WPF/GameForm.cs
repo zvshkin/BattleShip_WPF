@@ -24,6 +24,8 @@ namespace BattleShip_WPF
         private Label turnIndicator;
         private Timer computerTimer;
 
+        private Queue<Position> potentialTargets = new Queue<Position>();
+
         public GameForm(GameBoard playerBoard, bool isFastMode)
         {
             InitializeComponent();
@@ -193,37 +195,82 @@ namespace BattleShip_WPF
 
         private void DoComputerTurn()
         {
-            bool hit = true;
-
-            while (hit)
+            while (currentTurn == Turn.Computer)
             {
-                int r, c;
+                Position target;
 
-                do
+                if (potentialTargets.Count > 0)
                 {
-                    r = aiRandom.Next(boardSize);
-                    c = aiRandom.Next(boardSize);
+                    target = potentialTargets.Dequeue();
                 }
-                while (myBoard.Grid[r, c] != BoardCellState.Empty && myBoard.Grid[r, c] != BoardCellState.Ship);
+                else
+                {
+                    int r, c;
+                    do
+                    {
+                        r = aiRandom.Next(boardSize);
+                        c = aiRandom.Next(boardSize);
+                        target = new Position(r, c);
+                    }
+                    while (myBoard.Grid[r, c] != BoardCellState.Empty && myBoard.Grid[r, c] != BoardCellState.Ship);
+                }
 
-                BoardCellState result = myBoard.Shoot(new Position(r, c));
+                BoardCellState result = myBoard.Shoot(target);
+
+                Button targetButton = myButtons[target.Row, target.Column];
+                targetButton.Enabled = false;
 
                 if (result == BoardCellState.Hit || result == BoardCellState.Sunk)
                 {
-                    myButtons[r, c].BackColor = (result == BoardCellState.Sunk) ? Color.Red : Color.OrangeRed;
-                    hit = true;
+                    targetButton.BackColor = (result == BoardCellState.Sunk) ? Color.Red : Color.OrangeRed;
+
+                    if (result == BoardCellState.Hit)
+                    {
+                        AddNeighborsToTargetQueue(target);
+                        computerTimer.Start();
+                    }
+                    else
+                    {
+                        potentialTargets.Clear();
+                    }
 
                     if (CheckLose()) return;
                 }
                 else
                 {
-                    myButtons[r, c].BackColor = Color.LightGray;
-                    hit = false;
+                    targetButton.BackColor = Color.LightGray;
+
+                    currentTurn = Turn.Player;
+                    UpdateTurnIndicator();
+                    return;
                 }
             }
+        }
 
-            currentTurn = Turn.Player;
-            UpdateTurnIndicator();
+        private void AddNeighborsToTargetQueue(Position center)
+        {
+            int[] dr = { -1, 1, 0, 0 };
+            int[] dc = { 0, 0, -1, 1 };
+
+            for (int i = 0; i < 4; i++)
+            {
+                int r = center.Row + dr[i];
+                int c = center.Column + dc[i];
+
+                if (r >= 0 && r < boardSize && c >= 0 && c < boardSize)
+                {
+                    BoardCellState state = myBoard.Grid[r, c];
+
+                    if (state == BoardCellState.Empty || state == BoardCellState.Ship)
+                    {
+                        Position newTarget = new Position(r, c);
+                        if (!potentialTargets.Contains(newTarget))
+                        {
+                            potentialTargets.Enqueue(newTarget);
+                        }
+                    }
+                }
+            }
         }
 
         private bool CheckWin()
