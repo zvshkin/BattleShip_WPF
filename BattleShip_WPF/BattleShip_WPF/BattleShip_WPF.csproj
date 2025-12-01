@@ -47,6 +47,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fonts\FontLoader.cs" />
+    <Compile Include="Logic\BoardCellState.cs" />
+    <Compile Include="Logic\FleetGenerator.cs" />
+    <Compile Include="Logic\GameBoard.cs" />
+    <Compile Include="Logic\Position.cs" />
+    <Compile Include="Logic\Ship.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
