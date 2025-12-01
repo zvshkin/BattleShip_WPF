@@ -31,13 +31,13 @@ namespace BattleShip_WPF
         {
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.BackButton = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.CreateButton = new System.Windows.Forms.Button();
             this.FastButton = new System.Windows.Forms.Button();
             this.ClassicButton = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.BackButton = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,6 +77,23 @@ namespace BattleShip_WPF
             this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 450);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
+            // BackButton
+            // 
+            this.BackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.BackButton.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.BackButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
+            this.BackButton.FlatAppearance.BorderSize = 2;
+            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.BackButton.ForeColor = System.Drawing.Color.Navy;
+            this.BackButton.Location = new System.Drawing.Point(71, 352);
+            this.BackButton.Name = "BackButton";
+            this.BackButton.Size = new System.Drawing.Size(350, 81);
+            this.BackButton.TabIndex = 6;
+            this.BackButton.Text = "Назад";
+            this.BackButton.UseVisualStyleBackColor = false;
+            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
+            // 
             // label4
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -114,6 +131,7 @@ namespace BattleShip_WPF
             this.CreateButton.TabIndex = 2;
             this.CreateButton.Text = "Своя игра";
             this.CreateButton.UseVisualStyleBackColor = false;
+            this.CreateButton.Click += new System.EventHandler(this.CreateButton_Click);
             // 
             // FastButton
             // 
@@ -130,6 +148,7 @@ namespace BattleShip_WPF
             this.FastButton.TabIndex = 0;
             this.FastButton.Text = "Ускоренный";
             this.FastButton.UseVisualStyleBackColor = false;
+            this.FastButton.Click += new System.EventHandler(this.FastButton_Click);
             // 
             // ClassicButton
             // 
@@ -146,6 +165,7 @@ namespace BattleShip_WPF
             this.ClassicButton.TabIndex = 1;
             this.ClassicButton.Text = "Классический";
             this.ClassicButton.UseVisualStyleBackColor = false;
+            this.ClassicButton.Click += new System.EventHandler(this.ClassicButton_Click);
             // 
             // label2
             // 
@@ -157,23 +177,6 @@ namespace BattleShip_WPF
             this.label2.TabIndex = 3;
             this.label2.Text = "Стандартные правила игры, пошаговые выстрелы. Поле 10х10";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // BackButton
-            // 
-            this.BackButton.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.BackButton.BackColor = System.Drawing.Color.CornflowerBlue;
-            this.BackButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
-            this.BackButton.FlatAppearance.BorderSize = 2;
-            this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.BackButton.ForeColor = System.Drawing.Color.Navy;
-            this.BackButton.Location = new System.Drawing.Point(71, 352);
-            this.BackButton.Name = "BackButton";
-            this.BackButton.Size = new System.Drawing.Size(350, 81);
-            this.BackButton.TabIndex = 6;
-            this.BackButton.Text = "Назад";
-            this.BackButton.UseVisualStyleBackColor = false;
-            this.BackButton.Click += new System.EventHandler(this.BackButton_Click);
             // 
             // ModeForm
             // 

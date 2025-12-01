@@ -1,4 +1,5 @@
 ﻿using BattleShip_WPF.Fonts;
+using BattleShip_WPF.Logic;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -36,6 +37,35 @@ namespace BattleShip_WPF
             MainForm mainForm = new MainForm();
             mainForm.FormClosed += (s, args) => Application.Exit();
             mainForm.Show();
+            this.Hide();
+        }
+
+        private void ClassicButton_Click(object sender, EventArgs e)
+        {
+            var ships = FleetGenerator.GenerateRandomFleet(10, FleetGenerator.ClassicFleet);
+            GameBoard autoBoard = new GameBoard(10);
+            foreach (var s in ships) autoBoard.PlaceShip(s);
+
+            GameForm game = new GameForm(autoBoard, false);
+            game.Show();
+            this.Hide();
+        }
+
+        private void FastButton_Click(object sender, EventArgs e)
+        {
+            var ships = FleetGenerator.GenerateRandomFleet(8, FleetGenerator.FastFleet);
+            GameBoard autoBoard = new GameBoard(8);
+            foreach (var s in ships) autoBoard.PlaceShip(s);
+
+            GameForm game = new GameForm(autoBoard, true);
+            game.Show();
+            this.Hide();
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+            SetupForm setup = new SetupForm();
+            setup.Show();
             this.Hide();
         }
     }
