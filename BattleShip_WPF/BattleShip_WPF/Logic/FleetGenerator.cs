@@ -8,6 +8,8 @@ namespace BattleShip_WPF.Logic
 {
     public static class FleetGenerator
     {
+        private static readonly Random random = new Random();
+
         public static readonly Dictionary<int, int> ClassicFleet = new Dictionary<int, int>
     {
         { 4, 1 }, { 3, 2 }, { 2, 3 }, { 1, 4 }
@@ -21,7 +23,6 @@ namespace BattleShip_WPF.Logic
         public static List<Ship> GenerateRandomFleet(int boardSize, Dictionary<int, int> fleetDefinition)
         {
             var board = new GameBoard(boardSize);
-            var random = new Random();
             var ships = new List<Ship>();
 
             foreach (var pair in fleetDefinition.OrderByDescending(p => p.Key))
