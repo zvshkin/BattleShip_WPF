@@ -40,7 +40,7 @@ namespace BattleShip_WPF
             // 
             this.label1.BackColor = System.Drawing.Color.CornflowerBlue;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Oi", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
@@ -73,7 +73,7 @@ namespace BattleShip_WPF
             this.ExitButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.ExitButton.FlatAppearance.BorderSize = 2;
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ExitButton.Font = new System.Drawing.Font("Rubik Mono One", 20.25F);
+            this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.ExitButton.ForeColor = System.Drawing.Color.Navy;
             this.ExitButton.Location = new System.Drawing.Point(167, 157);
             this.ExitButton.Name = "ExitButton";
@@ -90,7 +90,7 @@ namespace BattleShip_WPF
             this.ModeButton.FlatAppearance.BorderColor = System.Drawing.Color.Navy;
             this.ModeButton.FlatAppearance.BorderSize = 2;
             this.ModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.ModeButton.Font = new System.Drawing.Font("Rubik Mono One", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.ModeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ModeButton.ForeColor = System.Drawing.Color.Navy;
             this.ModeButton.Location = new System.Drawing.Point(167, 64);
             this.ModeButton.Name = "ModeButton";
@@ -107,6 +107,7 @@ namespace BattleShip_WPF
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(162)))), ((int)(((byte)(191)))), ((int)(((byte)(244)))));
             this.ClientSize = new System.Drawing.Size(684, 411);
+            this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label1);
             this.MaximizeBox = false;
