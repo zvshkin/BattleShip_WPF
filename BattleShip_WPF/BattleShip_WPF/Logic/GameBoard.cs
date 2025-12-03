@@ -92,5 +92,18 @@ namespace BattleShip_WPF.Logic
                 return BoardCellState.Miss;
             }
         }
+
+        public void RemoveShip(Ship ship)
+        {
+            if (ship == null || !Ships.Contains(ship))
+                return;
+
+            foreach (var pos in ship.Positions)
+            {
+                Grid[pos.Row, pos.Column] = BoardCellState.Empty;
+            }
+
+            Ships.Remove(ship);
+        }
     }
 }

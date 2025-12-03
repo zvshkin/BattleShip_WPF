@@ -13,8 +13,8 @@ namespace BattleShip_WPF.Fonts
     {
         private static PrivateFontCollection privateFonts = new PrivateFontCollection();
 
-        private const string FontFileName1 = "Oi-Regular.ttf";
-        private const string FontFileName2 = "RubikMonoOne-Regular.ttf";
+        private const string FontFileName1 = "Fonts/Oi-Regular.ttf";
+        private const string FontFileName2 = "Fonts/RubikMonoOne-Regular.ttf";
 
 
         public static void LoadFont()

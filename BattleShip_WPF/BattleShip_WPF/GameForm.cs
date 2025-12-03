@@ -21,7 +21,6 @@ namespace BattleShip_WPF
         private int boardSize;
 
         private Turn currentTurn = Turn.Player;
-        private Label turnIndicator;
         private Timer computerTimer;
 
         private Queue<Position> potentialTargets = new Queue<Position>();
@@ -33,9 +32,18 @@ namespace BattleShip_WPF
             this.myBoard = playerBoard;
             this.boardSize = isFastMode ? 8 : 10;
 
+            this.BackColor = Color.FromArgb(162, 191, 244);
+            this.Text = "Морской Бой - " + (isFastMode ? "Ускоренный" : "Классический");
+
             InitializeEnemy(isFastMode);
             CreateBoardsUI();
-            InitializeTurnIndicator();
+
+            InitializeExitButton();
+
+            turnIndicator.Font = FontLoader.GetFont("Oi", 36);
+            myBoardLabel.Font = FontLoader.GetFont("Rubik Mono One", 16);
+            enemyBoardLabel.Font = FontLoader.GetFont("Rubik Mono One", 16);
+
             UpdateTurnIndicator();
 
             computerTimer = new Timer { Interval = 500 };
@@ -51,34 +59,58 @@ namespace BattleShip_WPF
             foreach (var ship in enemyShips) enemyBoard.PlaceShip(ship);
         }
 
-        private void InitializeTurnIndicator()
+        private void InitializeExitButton()
         {
-            turnIndicator = new Label
+            Button exitButton = new Button
             {
-                Location = new Point(this.Width / 2 - 150, 10),
-                Size = new Size(300, 30),
-                TextAlign = ContentAlignment.MiddleCenter,
-                Font = FontLoader.GetFont("Rubik Mono One", 14),
-                ForeColor = Color.Navy,
-                BackColor = Color.CornflowerBlue
+                Text = "Выход в меню",
+                Font = FontLoader.GetFont("Rubik Mono One", 12),
+                BackColor = Color.OrangeRed,
+                ForeColor = Color.White,
+                Dock = DockStyle.Fill
             };
-            this.Controls.Add(turnIndicator);
+            exitButton.Click += ExitButton_Click;
+            tableLayoutPanel1.Controls.Add(exitButton, 1, 2);
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "Перейти в меню?",
+                "Подтверждение перехода",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question
+            );
+
+            if (result == DialogResult.Yes)
+            {
+                ModeForm modeForm = new ModeForm();
+                modeForm.FormClosed += (s, args) => Application.Exit();
+                modeForm.Show();
+                this.Hide();
+            }
+            else
+            {
+            }
+
         }
 
         private void CreateBoardsUI()
         {
             int cellSize = 30;
             int boardWidth = boardSize * cellSize;
+            int boardHeight = boardSize * cellSize;
 
-            Panel myPanel = new Panel { Location = new Point(20, 70), Size = new Size(boardWidth, boardWidth), BackColor = Color.FromArgb(120, 160, 220) };
-            this.Controls.Add(myPanel);
+            Panel myPanel = new Panel { Size = new Size(boardWidth, boardHeight), BackColor = Color.FromArgb(120, 160, 220), Anchor = AnchorStyles.Top };
 
             myButtons = DrawBoardButtons(myPanel, myBoard, false, cellSize);
 
-            Panel enemyPanel = new Panel { Location = new Point(20 + boardWidth + 50, 70), Size = new Size(boardWidth, boardWidth), BackColor = Color.FromArgb(120, 160, 220) };
-            this.Controls.Add(enemyPanel);
+            Panel enemyPanel = new Panel { Size = new Size(boardWidth, boardHeight), BackColor = Color.FromArgb(120, 160, 220), Anchor = AnchorStyles.Top };
 
             enemyButtons = DrawBoardButtons(enemyPanel, enemyBoard, true, cellSize);
+
+            tableLayoutPanel1.Controls.Add(myPanel, 0, 1);
+            tableLayoutPanel1.Controls.Add(enemyPanel, 2, 1);
         }
 
         private Button[,] DrawBoardButtons(Panel parentPanel, GameBoard boardData, bool isClickable, int cellSize)
@@ -173,7 +205,6 @@ namespace BattleShip_WPF
 
                 if (CheckWin()) return;
 
-                MessageBox.Show(result == BoardCellState.Sunk ? "Корабль потоплен!" : "Попадание!");
                 return;
             }
             else
@@ -186,7 +217,6 @@ namespace BattleShip_WPF
             }
         }
 
-
         private void ComputerTimer_Tick(object sender, EventArgs e)
         {
             computerTimer.Stop();
@@ -195,55 +225,52 @@ namespace BattleShip_WPF
 
         private void DoComputerTurn()
         {
-            while (currentTurn == Turn.Computer)
+            Position target;
+
+            if (potentialTargets.Count > 0)
             {
-                Position target;
-
-                if (potentialTargets.Count > 0)
+                target = potentialTargets.Dequeue();
+            }
+            else
+            {
+                int r, c;
+                do
                 {
-                    target = potentialTargets.Dequeue();
+                    r = aiRandom.Next(boardSize);
+                    c = aiRandom.Next(boardSize);
+                    target = new Position(r, c);
+                }
+                while (myBoard.Grid[r, c] != BoardCellState.Empty && myBoard.Grid[r, c] != BoardCellState.Ship);
+            }
+
+            BoardCellState result = myBoard.Shoot(target);
+
+            Button targetButton = myButtons[target.Row, target.Column];
+
+            if (result == BoardCellState.Hit || result == BoardCellState.Sunk)
+            {
+                targetButton.BackColor = (result == BoardCellState.Sunk) ? Color.Red : Color.OrangeRed;
+
+                if (result == BoardCellState.Hit)
+                {
+                    AddNeighborsToTargetQueue(target);
                 }
                 else
                 {
-                    int r, c;
-                    do
-                    {
-                        r = aiRandom.Next(boardSize);
-                        c = aiRandom.Next(boardSize);
-                        target = new Position(r, c);
-                    }
-                    while (myBoard.Grid[r, c] != BoardCellState.Empty && myBoard.Grid[r, c] != BoardCellState.Ship);
+                    potentialTargets.Clear();
                 }
 
-                BoardCellState result = myBoard.Shoot(target);
+                if (CheckLose()) return;
 
-                Button targetButton = myButtons[target.Row, target.Column];
-                targetButton.Enabled = false;
+                computerTimer.Start();
+            }
+            else
+            {
+                targetButton.BackColor = Color.LightGray;
 
-                if (result == BoardCellState.Hit || result == BoardCellState.Sunk)
-                {
-                    targetButton.BackColor = (result == BoardCellState.Sunk) ? Color.Red : Color.OrangeRed;
-
-                    if (result == BoardCellState.Hit)
-                    {
-                        AddNeighborsToTargetQueue(target);
-                        computerTimer.Start();
-                    }
-                    else
-                    {
-                        potentialTargets.Clear();
-                    }
-
-                    if (CheckLose()) return;
-                }
-                else
-                {
-                    targetButton.BackColor = Color.LightGray;
-
-                    currentTurn = Turn.Player;
-                    UpdateTurnIndicator();
-                    return;
-                }
+                currentTurn = Turn.Player;
+                UpdateTurnIndicator();
+                return;
             }
         }
 
@@ -277,8 +304,9 @@ namespace BattleShip_WPF
         {
             if (enemyBoard.IsGameOver)
             {
-                MessageBox.Show("ПОБЕДА! Вы потопили весь флот противника.", "Игра окончена");
+                MessageBox.Show("👑 Поздравляем! Вы потопили весь флот противника. ВЫ ПОБЕДИЛИ! 🏆", "Игра окончена", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 SetEnemyBoardEnabled(false);
+                computerTimer.Stop();
                 return true;
             }
             return false;
@@ -288,7 +316,9 @@ namespace BattleShip_WPF
         {
             if (myBoard.IsGameOver)
             {
-                MessageBox.Show("ПОРАЖЕНИЕ! Весь ваш флот потоплен.", "Игра окончена");
+                MessageBox.Show("⚓️ Сожалеем, весь ваш флот потоплен. ПОРАЖЕНИЕ. 😭", "Игра окончена", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                SetEnemyBoardEnabled(false);
+                computerTimer.Stop();
                 return true;
             }
             return false;

@@ -47,6 +47,7 @@ namespace BattleShip_WPF
             foreach (var s in ships) autoBoard.PlaceShip(s);
 
             GameForm game = new GameForm(autoBoard, false);
+            game.FormClosed += (s, args) => Application.Exit();
             game.Show();
             this.Hide();
         }
@@ -58,6 +59,7 @@ namespace BattleShip_WPF
             foreach (var s in ships) autoBoard.PlaceShip(s);
 
             GameForm game = new GameForm(autoBoard, true);
+            game.FormClosed += (s, args) => Application.Exit();
             game.Show();
             this.Hide();
         }
@@ -65,6 +67,7 @@ namespace BattleShip_WPF
         private void CreateButton_Click(object sender, EventArgs e)
         {
             SetupForm setup = new SetupForm();
+            setup.FormClosed += (s, args) => Application.Exit();
             setup.Show();
             this.Hide();
         }

@@ -44,7 +44,7 @@ namespace BattleShip_WPF
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(684, 111);
+            this.label1.Size = new System.Drawing.Size(684, 100);
             this.label1.TabIndex = 0;
             this.label1.Text = "BATTLE SHIP";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -56,14 +56,14 @@ namespace BattleShip_WPF
             this.tableLayoutPanel1.Controls.Add(this.ExitButton, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.ModeButton, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 111);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 300);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(684, 311);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // ExitButton
@@ -75,7 +75,7 @@ namespace BattleShip_WPF
             this.ExitButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ExitButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F);
             this.ExitButton.ForeColor = System.Drawing.Color.Navy;
-            this.ExitButton.Location = new System.Drawing.Point(167, 157);
+            this.ExitButton.Location = new System.Drawing.Point(167, 164);
             this.ExitButton.Name = "ExitButton";
             this.ExitButton.Size = new System.Drawing.Size(350, 75);
             this.ExitButton.TabIndex = 1;
@@ -92,7 +92,7 @@ namespace BattleShip_WPF
             this.ModeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ModeButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ModeButton.ForeColor = System.Drawing.Color.Navy;
-            this.ModeButton.Location = new System.Drawing.Point(167, 64);
+            this.ModeButton.Location = new System.Drawing.Point(167, 68);
             this.ModeButton.Name = "ModeButton";
             this.ModeButton.Size = new System.Drawing.Size(350, 81);
             this.ModeButton.TabIndex = 0;

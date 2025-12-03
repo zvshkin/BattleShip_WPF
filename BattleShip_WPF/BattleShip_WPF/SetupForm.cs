@@ -15,6 +15,7 @@ namespace BattleShip_WPF
     public partial class SetupForm : Form
     {
         private GameBoard board = new GameBoard(10);
+        private Stack<Ship> placedShips = new Stack<Ship>();
         private Button[,] buttons = new Button[10, 10];
 
         private Dictionary<int, int> shipsToPlace = new Dictionary<int, int>
@@ -24,25 +25,21 @@ namespace BattleShip_WPF
 
         private bool isHorizontal = true;
         private int currentShipSize = 4;
-        private Button startButton;
-        private Label statusLabel;
 
         public SetupForm()
         {
             InitializeComponent();
 
-            this.Size = new Size(800, 550);
-            this.BackColor = Color.FromArgb(162, 191, 244);
-            this.Text = "Своя игра: Расстановка флота";
-
             CreateBoardUI();
             CreateControls();
             UpdateControls();
+
+            label1.Font = FontLoader.GetFont("Oi", 36);
+            BackButton.Font = FontLoader.GetFont("Rubik Mono One", 12);
         }
 
         private void CreateBoardUI()
         {
-            Panel gamePanel = new Panel { Location = new Point(20, 20), Size = new Size(400, 400), BackColor = Color.FromArgb(120, 160, 220) };
             this.Controls.Add(gamePanel);
 
             int cellSize = 40;
@@ -66,11 +63,9 @@ namespace BattleShip_WPF
 
         private void CreateControls()
         {
-            statusLabel = new Label { Location = new Point(450, 20), AutoSize = true, ForeColor = Color.Navy };
-            statusLabel.Font = FontLoader.GetFont("Rubik Mono One", 10);
+            statusLabel.Font = FontLoader.GetFont("Rubik Mono One", 15);
             this.Controls.Add(statusLabel);
 
-            Button rotateBtn = new Button { Text = "Повернуть (Гориз)", Location = new Point(450, 180), Size = new Size(180, 50), BackColor = Color.CornflowerBlue, ForeColor = Color.Navy };
             rotateBtn.Font = FontLoader.GetFont("Rubik Mono One", 12);
             rotateBtn.Click += (s, e) => {
                 isHorizontal = !isHorizontal;
@@ -78,7 +73,6 @@ namespace BattleShip_WPF
             };
             this.Controls.Add(rotateBtn);
 
-            startButton = new Button { Text = "В БОЙ!", Location = new Point(450, 350), Size = new Size(180, 60), BackColor = Color.OrangeRed, ForeColor = Color.White, Enabled = false };
             startButton.Font = FontLoader.GetFont("Oi", 20);
             startButton.Click += StartGame_Click;
             this.Controls.Add(startButton);
@@ -98,7 +92,10 @@ namespace BattleShip_WPF
 
         private void Cell_Click(object sender, EventArgs e)
         {
-            if (currentShipSize == 0) return;
+            if (AllShipsPlaced())
+            {
+                startButton.Enabled = true;
+            }
 
             Position startPos = (Position)((Button)sender).Tag;
             List<Position> proposedPositions = new List<Position>();
@@ -125,6 +122,7 @@ namespace BattleShip_WPF
                     }
 
                     shipsToPlace[currentShipSize]--;
+                    placedShips.Push(newShip);
                     UpdateControls();
 
                     if (currentShipSize == 0)
@@ -143,11 +141,55 @@ namespace BattleShip_WPF
             }
         }
 
+        private bool AllShipsPlaced()
+        {
+            return shipsToPlace.Values.All(count => count == 0);
+        }
+
+        private void RemoveLastShip()
+        {
+            if (placedShips.Count == 0)
+            {
+                MessageBox.Show("Нет кораблей для удаления.", "Информация", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            Ship lastShip = placedShips.Pop();
+            int shipSize = lastShip.Size;
+
+            board.RemoveShip(lastShip);
+
+            foreach (var pos in lastShip.Positions)
+            {
+                buttons[pos.Row, pos.Column].BackColor = Color.CornflowerBlue;
+                buttons[pos.Row, pos.Column].Enabled = true;
+            }
+
+            shipsToPlace[shipSize]++;
+
+            UpdateControls();
+            startButton.Enabled = false;
+        }
+
         private void StartGame_Click(object sender, EventArgs e)
         {
             GameForm game = new GameForm(this.board, false);
+            game.FormClosed += (s, args) => Application.Exit();
             game.Show();
             this.Hide();
+        }
+
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            ModeForm modeForm = new ModeForm();
+            modeForm.FormClosed += (s, args) => Application.Exit();
+            modeForm.Show();
+            this.Hide();
+        }
+
+        private void dellBtn_Click(object sender, EventArgs e)
+        {
+            RemoveLastShip();
         }
     }
 }

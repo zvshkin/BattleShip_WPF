@@ -49,7 +49,7 @@ namespace BattleShip_WPF
             this.label1.ForeColor = System.Drawing.Color.Navy;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(984, 111);
+            this.label1.Size = new System.Drawing.Size(984, 100);
             this.label1.TabIndex = 1;
             this.label1.Text = "Выберите режим";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -67,14 +67,14 @@ namespace BattleShip_WPF
             this.tableLayoutPanel1.Controls.Add(this.ClassicButton, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 111);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 100);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 450);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 461);
             this.tableLayoutPanel1.TabIndex = 2;
             // 
             // BackButton
@@ -86,7 +86,7 @@ namespace BattleShip_WPF
             this.BackButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BackButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.BackButton.ForeColor = System.Drawing.Color.Navy;
-            this.BackButton.Location = new System.Drawing.Point(71, 352);
+            this.BackButton.Location = new System.Drawing.Point(71, 362);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(350, 81);
             this.BackButton.TabIndex = 6;
@@ -98,7 +98,7 @@ namespace BattleShip_WPF
             // 
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label4.ForeColor = System.Drawing.Color.Navy;
-            this.label4.Location = new System.Drawing.Point(495, 224);
+            this.label4.Location = new System.Drawing.Point(495, 230);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(486, 112);
             this.label4.TabIndex = 5;
@@ -109,7 +109,7 @@ namespace BattleShip_WPF
             // 
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.ForeColor = System.Drawing.Color.Navy;
-            this.label3.Location = new System.Drawing.Point(495, 112);
+            this.label3.Location = new System.Drawing.Point(495, 115);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(484, 112);
             this.label3.TabIndex = 4;
@@ -125,7 +125,7 @@ namespace BattleShip_WPF
             this.CreateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.CreateButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.CreateButton.ForeColor = System.Drawing.Color.Navy;
-            this.CreateButton.Location = new System.Drawing.Point(71, 239);
+            this.CreateButton.Location = new System.Drawing.Point(71, 247);
             this.CreateButton.Name = "CreateButton";
             this.CreateButton.Size = new System.Drawing.Size(350, 81);
             this.CreateButton.TabIndex = 2;
@@ -142,7 +142,7 @@ namespace BattleShip_WPF
             this.FastButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.FastButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FastButton.ForeColor = System.Drawing.Color.Navy;
-            this.FastButton.Location = new System.Drawing.Point(71, 127);
+            this.FastButton.Location = new System.Drawing.Point(71, 132);
             this.FastButton.Name = "FastButton";
             this.FastButton.Size = new System.Drawing.Size(350, 81);
             this.FastButton.TabIndex = 0;
@@ -159,7 +159,7 @@ namespace BattleShip_WPF
             this.ClassicButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.ClassicButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.ClassicButton.ForeColor = System.Drawing.Color.Navy;
-            this.ClassicButton.Location = new System.Drawing.Point(71, 15);
+            this.ClassicButton.Location = new System.Drawing.Point(71, 17);
             this.ClassicButton.Name = "ClassicButton";
             this.ClassicButton.Size = new System.Drawing.Size(350, 81);
             this.ClassicButton.TabIndex = 1;
