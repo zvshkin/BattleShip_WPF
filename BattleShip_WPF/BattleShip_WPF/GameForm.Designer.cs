@@ -44,7 +44,7 @@
             this.turnIndicator.ForeColor = System.Drawing.Color.Navy;
             this.turnIndicator.Location = new System.Drawing.Point(0, 0);
             this.turnIndicator.Name = "turnIndicator";
-            this.turnIndicator.Size = new System.Drawing.Size(984, 96);
+            this.turnIndicator.Size = new System.Drawing.Size(1000, 96);
             this.turnIndicator.TabIndex = 3;
             this.turnIndicator.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -63,16 +63,16 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 10F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 70F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(984, 465);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1000, 500);
             this.tableLayoutPanel1.TabIndex = 4;
             // 
             // myBoardLabel
             // 
             this.myBoardLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.myBoardLabel.ForeColor = System.Drawing.Color.Navy;
-            this.myBoardLabel.Location = new System.Drawing.Point(3, 2);
+            this.myBoardLabel.Location = new System.Drawing.Point(3, 4);
             this.myBoardLabel.Name = "myBoardLabel";
-            this.myBoardLabel.Size = new System.Drawing.Size(336, 41);
+            this.myBoardLabel.Size = new System.Drawing.Size(344, 41);
             this.myBoardLabel.TabIndex = 0;
             this.myBoardLabel.Text = "Ваше Поле";
             this.myBoardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -81,9 +81,9 @@
             // 
             this.enemyBoardLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.enemyBoardLabel.ForeColor = System.Drawing.Color.Navy;
-            this.enemyBoardLabel.Location = new System.Drawing.Point(645, 2);
+            this.enemyBoardLabel.Location = new System.Drawing.Point(653, 4);
             this.enemyBoardLabel.Name = "enemyBoardLabel";
-            this.enemyBoardLabel.Size = new System.Drawing.Size(336, 41);
+            this.enemyBoardLabel.Size = new System.Drawing.Size(344, 41);
             this.enemyBoardLabel.TabIndex = 1;
             this.enemyBoardLabel.Text = "Поле Компьютера";
             this.enemyBoardLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -93,10 +93,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(984, 561);
+            this.ClientSize = new System.Drawing.Size(1000, 596);
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.turnIndicator);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GameForm";
             this.Text = "Battle Ship | Игра";

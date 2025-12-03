@@ -29,6 +29,7 @@ namespace BattleShip_WPF
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModeForm));
             this.label1 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.BackButton = new System.Windows.Forms.Button();
@@ -188,6 +189,7 @@ namespace BattleShip_WPF
             this.ControlBox = false;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "ModeForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

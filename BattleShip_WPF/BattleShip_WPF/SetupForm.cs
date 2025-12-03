@@ -127,6 +127,7 @@ namespace BattleShip_WPF
 
                     if (currentShipSize == 0)
                     {
+                        
                         startButton.Enabled = true;
                     }
                 }
